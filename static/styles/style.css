@@ -16,12 +16,7 @@ body {
     font-size: medium;
     font-weight:bold ;
 }
-#signup
-{
-    font-size: large;
-    color:blue;
-    font-weight: bolder;
-}
+
 #a1{
     margin:100px;
 }
@@ -29,8 +24,8 @@ body {
     margin-right: 20px;
 }
 .Container{
-    background-image: url("https://www.slideteam.net/media/catalog/product/cache/1280x720/e/m/employee_management_system_training_administration_personal_data_Slide01.jpg");
-}
+  background-image: url("https://www.slideteam.net/media/catalog/product/cache/1280x720/e/m/employee_management_system_training_administration_personal_data_Slide01.jpg");  
+  }
 
 table th,td{
     border: 1px solid black;
@@ -42,18 +37,75 @@ td {
 th{
   background-color:#96D4D4 ;
 }  
-#btn:not(:active) {
-  /* now keep red background for 1s */
-  transition: background-color 2000ms step-end;
+
+#flogin{
+  background-color:goldenrod;
+}
+.login-block {
+  padding: 50px;
+  background-color:#75b72e;
+}
+.submit{
+  background-color:coral;
+  color:greenyellow;
+  padding: 16px 20px;
+  margin: 15px 0px;
+  border: none; 
+  cursor: pointer;
+  width: 49%;
+  opacity: 0.9;
+  font-size: medium;
+  font-weight:bold ;
+}
+.submit:hover {
+  opacity: 2;
+}
+hr {
+  border: 1px solid #F1F1F1;
+  margin-bottom: 25px;
+}
+#divlogin{
+  padding: 35px 15px;
+}
+input[type=text], input[type=password], textarea{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #F1F1F1;
+}
+.l1{
+  padding: 20px;
+  font-weight: bolder;
+  font-size: large;
+}
+.signupclass{
+  padding: 15px;
+  background-color:#75b72e;
+}
+.signupbg{
+  background-color:goldenrod;
+}
+#signup
+{
+    font-size: large;
+    color:black;
+    font-weight: bolder;
 }
 
-#btn:active {
-  background: red;
+.ssubmit{
+  background-color:coral;
+  color:greenyellow;
+  padding: 20px 25px;
+  margin: 5px 0px;
+  border:none; 
+  cursor: pointer;
+  width: 33%;
+  opacity: 0.9;
+  font-size: medium;
+  font-weight:bold ;
 }
-#flogin{
-  background-color:lightcoral;
-}
-#signupbg{
-  background-color: lightseagreen;
-  text-align: center;
+.ssubmit:hover {
+  opacity: 1;
 }
