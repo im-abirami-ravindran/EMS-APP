@@ -1,0 +1,20 @@
+{% block body %}
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='styles/style.css') }}">
+</head>
+<body id="signupbg">
+<form  method='POST' id="signup">
+    Username: <input type="text" name="name"><br>
+    Email: <input type="text" name="email"><br>
+    Password: <input type="password" name="password"><br>
+    Re-enter Password: <input type="password" name="password"><br>
+    <input type="submit" value="Submit" >
+    <input type="reset" value="Reset">
+    <input type="button" value="Back" onclick="location.href='http://127.0.0.1:5000/'">
+   
+</form>
+</body>
+</html>
+{% endblock %} 

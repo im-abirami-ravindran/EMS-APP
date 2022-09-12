@@ -1,0 +1,59 @@
+body {
+    background-size: auto;
+  }
+  
+.Container{
+   text-align:center; 
+   line-height:540px;
+}
+.alogin
+{
+    background-color:coral;
+    color:greenyellow;
+    height: 50px;
+    width: 150px;
+    padding:10px;
+    font-size: medium;
+    font-weight:bold ;
+}
+#signup
+{
+    font-size: large;
+    color:blue;
+    font-weight: bolder;
+}
+#a1{
+    margin:100px;
+}
+#a2{
+    margin-right: 20px;
+}
+.Container{
+    background-image: url("https://www.slideteam.net/media/catalog/product/cache/1280x720/e/m/employee_management_system_training_administration_personal_data_Slide01.jpg");
+}
+
+table th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+td {
+    background-color:burlywood;
+  }
+th{
+  background-color:#96D4D4 ;
+}  
+#btn:not(:active) {
+  /* now keep red background for 1s */
+  transition: background-color 2000ms step-end;
+}
+
+#btn:active {
+  background: red;
+}
+#flogin{
+  background-color:lightcoral;
+}
+#signupbg{
+  background-color: lightseagreen;
+  text-align: center;
+}

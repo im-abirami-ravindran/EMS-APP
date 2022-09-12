@@ -1,0 +1,14 @@
+{% block body %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='styles/style.css') }}">
+    <title>Login</title>
+</head>
+<body id="flogin">
+<form method="POST" align="center" >
+    <b>Username: <input type="text"name="name"></b><br>
+    <b>Password: <input type="password" name="password"></b><br>
+    <input type="submit" value="Submit" >
+    <input type="button" value="Back" onclick="location.href='http://127.0.0.1:5000/'">
+</form>
+</body>
+{% endblock %}

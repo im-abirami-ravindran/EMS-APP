@@ -1,0 +1,45 @@
+<h1>You are at the employee site now</h1>
+{% block body %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='styles/style.css') }}">
+</head>
+<form>
+    <input type="submit" value="EDIT" name="submit_button" onclick="">
+    <input type="submit" value="ATTENDANCE" name="asubmit_button">
+    <input type="submit" value="LEAVE REQUEST" name="asubmit_button">
+    </form>
+    <br><br><br>
+</form>
+
+<br><br><br>
+<table >
+    <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Email id</th>
+        <th>Date of Birth</th>
+        <th>Department</th>
+        <th>No of Days</th>
+        <th>From Date</th>
+        <th>ToDate</th>
+        <th>Attendance IN</th>
+        <th>Attendance OUT</th>
+        <th>Leave Request</th>
+    </tr>
+    {%for i in newuser %}
+    <tr>
+        <td>{{i.eid}}</td>
+        <td>{{i.ename}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.DoB}}</td>
+        <td>{{i.Dept}}</td>
+        <td>{{i.NoDays}}</td>
+        <td>{{i.FromDate}}</td>
+        <td>{{i.ToDate}}</td>
+        <td>{{i.Ain}}</td>
+        <td>{{i.Aout}}</td>
+        <td>{{i.LeaveReq}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='styles/style.css') }}">
+</head>
+<body>
+    <!--<h1>EMPLOYEE MANAGEMENT SYSTEM </h1>-->
+    <div class="Container">
+    <form name="System">
+        <button type="button"  id=a1 class="alogin" onclick="location.href='http://127.0.0.1:5000/login'">LOGIN <br>
+        <button type="button"  id=a2 class="alogin" onclick="location.href='http://127.0.0.1:5000/signup'"> SIGN UP <br>
+    </form>
+    {% block body %} {% endblock %}
+</div>
+
+</body>
+</html>
