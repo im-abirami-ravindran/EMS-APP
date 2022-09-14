@@ -76,6 +76,10 @@ def employee():
 def aedit():
     db = mongo.db.EmployeeDetails
     if request.method == 'POST':
+<<<<<<< HEAD
+=======
+        print(request.form['eid'])
+>>>>>>> a56c1252cac41d62a13cea509e34e1be18231a4c
         eid=request.form['eid']
         ename=request.form['ename']
         email=request.form['email']
@@ -100,6 +104,7 @@ def aedit():
             'Aout':Aout,
             'LeaveReq':LeaveReq
         })
+<<<<<<< HEAD
         flash(eid ," ",ename," Successfully Signed In")
     return render_template("add.html")
 
@@ -111,6 +116,9 @@ def delete(eid):
 def logout():
     session["username"]=None
     return render_template("login.html")
+=======
+    return render_template("add.html")
+>>>>>>> a56c1252cac41d62a13cea509e34e1be18231a4c
 
 if __name__ == "__main__":
     app.run(debug=True,port=5000)
