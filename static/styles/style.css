@@ -134,3 +134,35 @@ a{
   Color: WHITE;
   margin-left: 1em;
 }
+
+#adminadd input[type=text],input[type=email],input[type=date],input[type=datetime-local],textarea {
+  width: 20%;
+  padding: 5px 10px;  
+  margin: 8px 0;
+  border:none;
+  margin-left: 10em;
+  display: flex;
+margin-top: -1em;
+
+}
+#adminadd label{
+color:white;
+margin-left: 1em;
+margin-right: 5em;
+}
+#adminadd{
+  background-color: chocolate;
+}
+
+.addsubmit{
+  color:white;
+  background-color: #777;
+  padding: 16px 20px;
+  margin: 15px 20px;
+  border: none; 
+  cursor: pointer;
+  width: 20%;
+  opacity: 1.0;
+  font-size: medium;
+  font-weight:bold ;
+}

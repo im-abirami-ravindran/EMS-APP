@@ -64,12 +64,38 @@ def employee():
     if db.find({'ename':username}):
         for i in db.find({'ename':username},{"_id":0}):
             detail.append(i) 
-
     return render_template("employee.html",newuser=detail)
 
-@app.route("/admin/edit",methods=['GET','POST'])
+@app.route("/admin/add",methods=['GET','POST'])
 def aedit():
-    return render_template("edit.html")
+    db = mongo.db.EmployeeDetails
+    if request.method == 'POST':
+        print(request.form['eid'])
+        eid=request.form['eid']
+        ename=request.form['ename']
+        email=request.form['email']
+        dob=request.form['dob']
+        Dept=request.form['Dept']
+        nod=request.form['nod']
+        FromDate=request.form['FromDate']
+        ToDate=request.form['ToDate']
+        Ain=request.form['Ain']
+        Aout=request.form['Aout']
+        LeaveReq=request.form['LeaveReq']
+        adder=db.insert_one({
+            'eid': eid ,
+            'ename':ename,
+            'email':email,
+            'DoB': dob,
+            'Dept': Dept,
+            'NoDays':nod,
+            'FromDate':FromDate,
+            'ToDate':ToDate,
+            'Ain':Ain,
+            'Aout':Aout,
+            'LeaveReq':LeaveReq
+        })
+    return render_template("add.html")
 
 if __name__ == "__main__":
     app.run(debug=True,port=5000)
