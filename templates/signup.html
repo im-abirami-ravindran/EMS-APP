@@ -5,12 +5,14 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='styles/style.css') }}">
 </head>
 <div class="signupclass">
+    <center>  <h1> Sign Up </h1> </center>
+    <hr>
 <body class="signupbg">
 <form  method='POST' id="signup">
-    Username: <input type="text" name="name"><br>
-    Email: <input type="text" name="email"><br>
-    Password: <input type="password" name="password"><br>
-    Re-enter Password: <input type="password" name="password"><br>
+    Username: <input type="text" name="name" placeholder="Enter Username"><br>
+    Email: <input type="text" name="email" placeholder="Enter Email"><br>
+    Password: <input type="password" name="password" placeholder="Enter Password"><br>
+    Re-enter Password: <input type="password" name="password" placeholder="Re-Enter Password"><br>
     <input type="submit" value="Submit" class="ssubmit">
     <input type="reset" value="Reset" class="ssubmit">
     <input type="button" value="Back" class="ssubmit" onclick="location.href='http://127.0.0.1:5000/'">

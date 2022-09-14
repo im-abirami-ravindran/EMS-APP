@@ -1,5 +1,6 @@
 from flask import Flask,render_template,Response,jsonify,redirect,request,flash
 from flask_pymongo import PyMongo,ObjectId
+from flask_session import Session
 import bcrypt
 
 app= Flask(__name__,static_url_path="/static")
@@ -52,8 +53,7 @@ def admin():
     detail=[]
     for i in db.find({},{"_id":0}):
         detail.append(i)
-    if 'sumit_button' in request.form :
-         return redirect("/login")
+    # app.add_url_rule("/","/edit")
     return render_template("admin.html",newuser=detail)
 
 
@@ -66,6 +66,10 @@ def employee():
             detail.append(i) 
 
     return render_template("employee.html",newuser=detail)
+
+@app.route("/admin/edit",methods=['GET','POST'])
+def aedit():
+    return render_template("edit.html")
 
 if __name__ == "__main__":
     app.run(debug=True,port=5000)

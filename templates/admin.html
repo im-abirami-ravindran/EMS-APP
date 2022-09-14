@@ -1,14 +1,20 @@
-<h1>You are at the admin site now</h1>
 {% block body %}
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='styles/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
 </head>
 <body>
-<form>
-<input type="submit" value="EDIT" name="submit_button" >
-<input type="submit" value="LEAVE" name="asubmit_button">
-</form>
-<br><br><br>
+<header id="header">
+    <h1>ADMIN SITE</h1>
+</header>
+<div >
+<section id="section1" >
+    <nav id="nav"> 
+    <a href="/">HOME</a>
+    <a href="{{url_for('aedit')}}">EDIT</a>
+    <a href="#">LEAVE</a>     
+    <a href="/login">LOG OUT</a>  
+    </nav>
+</div>
 <table >
     <tr>
         <th>Employee ID</th>
@@ -38,5 +44,8 @@
         <td>{{i.LeaveReq}}</td>
     </tr>
 {% endfor %}
-</table></body>
+</table>
+</section>
+<footer id="footer">THIS IS FOOTER</footer>
+</body>
  {% endblock %}
