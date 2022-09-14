@@ -157,7 +157,6 @@ margin-right: 5em;
 .addsubmit{
   color:white;
   background-color: #777;
-<<<<<<< HEAD
   padding: 10px 20px;
   margin: 15px 20px;
   border: none; 
@@ -172,14 +171,3 @@ margin-right: 5em;
   color:red;
   font-weight:bold;
 }
-=======
-  padding: 16px 20px;
-  margin: 15px 20px;
-  border: none; 
-  cursor: pointer;
-  width: 20%;
-  opacity: 1.0;
-  font-size: medium;
-  font-weight:bold ;
-}
->>>>>>> a56c1252cac41d62a13cea509e34e1be18231a4c
