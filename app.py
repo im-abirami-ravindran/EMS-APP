@@ -1,10 +1,12 @@
-from flask import Flask,render_template,Response,jsonify,redirect,request,flash
+from flask import Flask,render_template,Response,jsonify,redirect,request,flash,session
 from flask_pymongo import PyMongo,ObjectId
 from flask_session import Session
 import bcrypt
 
 app= Flask(__name__,static_url_path="/static")
 app.secret_key='Nothing'
+app.config['SESSION__PERMANENT']=False
+app.config["SESSION_TYPE"]='filesystem'
 
 app.config['MONGO_URI']="mongodb://localhost/EmployeeMS"
 mongo = PyMongo(app)
@@ -27,6 +29,7 @@ def signup():
             'email': new_email,
             'password': new_password
         })
+        flash(new_username,"Successfully Signed In")
         return redirect("/")
 
     return render_template("signup.html")
@@ -36,14 +39,16 @@ def login():
     if request.method=='POST':
         global username
         username=request.form['name']
+        session['username']=username
         password=request.form['password']
         if db.find_one({'name':username})  and db.find({'password':password}):
              if username == 'admin':
+                flash(username+" Successfully Signed In")
                 return redirect("/admin")
              else:
+                flash(username+ " Successfully Signed In")
                 return redirect("/employee")
         else:
-            print('No such user id exists.Please Sign In')
             return redirect("/signup")
     return render_template('login.html')
 
@@ -61,15 +66,51 @@ def admin():
 def employee():
     db=mongo.db.EmployeeDetails
     detail=[]
+    session['username']=username
     if db.find({'ename':username}):
         for i in db.find({'ename':username},{"_id":0}):
             detail.append(i) 
-
     return render_template("employee.html",newuser=detail)
 
-@app.route("/admin/edit",methods=['GET','POST'])
+@app.route("/admin/add",methods=['GET','POST'])
 def aedit():
-    return render_template("edit.html")
+    db = mongo.db.EmployeeDetails
+    if request.method == 'POST':
+        eid=request.form['eid']
+        ename=request.form['ename']
+        email=request.form['email']
+        dob=request.form['dob']
+        Dept=request.form['Dept']
+        nod=request.form['nod']
+        FromDate=request.form['FromDate']
+        ToDate=request.form['ToDate']
+        Ain=request.form['Ain']
+        Aout=request.form['Aout']
+        LeaveReq=request.form['LeaveReq']
+        adder=db.insert_one({
+            'eid': eid ,
+            'ename':ename,
+            'email':email,
+            'DoB': dob,
+            'Dept': Dept,
+            'NoDays':nod,
+            'FromDate':FromDate,
+            'ToDate':ToDate,
+            'Ain':Ain,
+            'Aout':Aout,
+            'LeaveReq':LeaveReq
+        })
+        flash(eid ," ",ename," Successfully Signed In")
+    return render_template("add.html")
+
+@app.route("/admin/<eid>",methods=['GET','POST'])
+def delete(eid):
+    return render_template("admin.html")
+
+@app.route("/logout",methods=['GET','POST'])
+def logout():
+    session["username"]=None
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(debug=True,port=5000)

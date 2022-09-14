@@ -1,10 +1,18 @@
-<h1>You are at the employee site now</h1>
 {% block body %}
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
 </head>
 <header id="header">
-    <h1>ADMIN SITE</h1>
+    <h1>EMPLOYEE SITE</h1>
+    <div id='messages'>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+         {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
 </header>
 <div >
 <section id="section1" >
@@ -13,7 +21,7 @@
     <a href="{{url_for('aedit')}}">EDIT</a>
     <a href="#">ATTENDANCE</a> 
     <a href="#">LEAVE REQUEST</a>     
-    <a href="/login">LOG OUT</a>  
+    <a href="/logout">LOG OUT</a>  
     </nav>
 </div>
 <table >
@@ -47,4 +55,5 @@
 {% endfor %}
 </section>
 </table>
+<!--LEAVE REQ,ATTENDANCE REQ ,UPDATE-EDIT(PUT),Validation - username,password,,TEST PY -->
 {% endblock %}

@@ -5,14 +5,23 @@
 <body>
 <header id="header">
     <h1>ADMIN SITE</h1>
+    <div id='messages'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        {{ message }}
+     {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
 </header>
 <div >
 <section id="section1" >
     <nav id="nav"> 
-    <a href="/">HOME</a>
-    <a href="{{url_for('aedit')}}">EDIT</a>
-    <a href="#">LEAVE</a>     
-    <a href="/login">LOG OUT</a>  
+    <a href="/admin">HOME</a>
+    <a href="{{url_for('aedit')}}">ADD</a>
+    <a href="/">LEAVE</a>     
+    <a href="/logout">LOG OUT</a>  
     </nav>
 </div>
 <table >
@@ -46,6 +55,5 @@
 {% endfor %}
 </table>
 </section>
-<footer id="footer">THIS IS FOOTER</footer>
 </body>
  {% endblock %}
