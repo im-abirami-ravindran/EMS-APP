@@ -1,4 +1,4 @@
-from flask import Flask,render_template,Response,jsonify,redirect,request,flash,session
+from flask import Flask,render_template,Response,jsonify,redirect,request,flash,session,url_for
 from flask_pymongo import PyMongo,ObjectId
 from flask_session import Session
 import bcrypt
@@ -10,8 +10,9 @@ app.config["SESSION_TYPE"]='filesystem'
 
 app.config['MONGO_URI']="mongodb://localhost/EmployeeMS"
 mongo = PyMongo(app)
-
-db = mongo.db.EmployeeMSystem
+global username
+dbm = mongo.db.EmployeeMSystem
+db = mongo.db.EmployeeDetails
 
 @app.route("/")
 def index():
@@ -24,7 +25,7 @@ def signup():
         new_email = request.form['email']
         new_password = request.form['password']
         haspassword = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
-        id = db.insert_one({
+        id = dbm.insert_one({
             'name': new_username,
             'email': new_email,
             'password': new_password
@@ -41,7 +42,7 @@ def login():
         username=request.form['name']
         session['username']=username
         password=request.form['password']
-        if db.find_one({'name':username})  and db.find({'password':password}):
+        if dbm.find_one({'name':username})  and dbm.find({'password':password}):
              if username == 'admin':
                 flash(username+" Successfully Signed In")
                 return redirect("/admin")
@@ -54,7 +55,6 @@ def login():
 
 @app.route("/admin",methods=['GET','POST'])
 def admin():
-    db = mongo.db.EmployeeDetails
     detail=[]
     for i in db.find({},{"_id":0}):
         detail.append(i)
@@ -64,12 +64,11 @@ def admin():
 
 @app.route("/employee",methods=['GET','POST'])
 def employee():
-    db=mongo.db.EmployeeDetails
     detail=[]
     session['username']=username
     if db.find({'ename':username}):
-        for i in db.find({'ename':username},{"_id":0}):
-            detail.append(i) 
+        detail=db.find({'ename':username},{"_id":0})
+        print(detail) 
     return render_template("employee.html",newuser=detail)
 
 @app.route("/admin/add",methods=['GET','POST'])
@@ -100,19 +99,41 @@ def aedit():
             'Aout':Aout,
             'LeaveReq':LeaveReq
         })
-
-        flash(eid ," ",ename," Successfully Signed In")
     return render_template("add.html")
 
-@app.route("/admin/<eid>",methods=['GET','POST'])
-def delete(eid):
-    return render_template("admin.html")
+@app.route("/employee/add",methods=['GET','POST'])
+def eedit():
+    session['username']=username
+    if request.method == 'POST':
+        email=request.form['email']
+        dob=request.form['dob']
+        dept=request.form['Dept']
+        nod=request.form['nod']
+        FromDate=request.form['FromDate']
+        ToDate=request.form['ToDate']
+        updater=db.update_one({'ename':username},{'$set':{
+            'email': email,
+            'DoB': dob,
+            'Dept': dept,
+            'NoDays':nod,
+            'FromDate':FromDate,
+            'ToDate':ToDate
+        }})
+        dbm.update_one({'name':username},{'$set':{'email':email}})
+        
+    return render_template("eadd.html")
+
+
+@app.route("/admin/<id>",methods=['GET','POST'])
+def delete(id):
+    db.delete_one({'eid':id})
+    return redirect(url_for('admin'))
+    #return render_template("admin.html")
 
 @app.route("/logout",methods=['GET','POST'])
 def logout():
     session["username"]=None
-    return render_template("login.html")
+    return render_template("index.html")
 
-    return render_template("add.html")
 if __name__ == "__main__":
     app.run(debug=True,port=5000)

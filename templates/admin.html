@@ -3,6 +3,22 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}" />
 </head>
 <body>
+    {% block scripts %}
+    <script  type="text/javascript">
+        
+        function func(emp){
+        var txt;
+        if (confirm("Are you sure you want to delete this employee id "+emp)) {
+        txt = alert(emp +" has been successfully deleted");
+
+      } else {
+        txt = alert("You pressed Cancel!");
+      }
+    //document.getElementById("demo").innerHTML = emp;
+            } 
+        </script>
+    
+    {% endblock %}
 <header id="header">
     <h1>ADMIN SITE</h1>
     <div id='messages'>
@@ -37,6 +53,7 @@
         <th>Attendance IN</th>
         <th>Attendance OUT</th>
         <th>Leave Request</th>
+        <th>Deletion</th>
     </tr>
     {%for i in newuser %}
     <tr>
@@ -51,6 +68,8 @@
         <td>{{i.Ain}}</td>
         <td>{{i.Aout}}</td>
         <td>{{i.LeaveReq}}</td>
+        {% set id=i.eid %}
+        <td><button type ="submit"  id="demo" onclick="return confirm('Do you want to delete this')"><a href="{{url_for('delete',id=id)}}">Delete</a></button>
     </tr>
 {% endfor %}
 </table>

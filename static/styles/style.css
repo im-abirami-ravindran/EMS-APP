@@ -171,3 +171,27 @@ margin-right: 5em;
   color:red;
   font-weight:bold;
 }
+#demo{
+  color:black;
+  background-color: #777;
+  border:none;
+}
+
+#aadminadd input[type=text],input[type=email],input[type=date],input[type=datetime-local],textarea {
+  width: 20%;
+  padding: 5px 10px;  
+  margin: 8px 0;
+  border:none;
+  margin-left: 10em;
+  display: flex;
+margin-top: -1em;
+
+}
+#aadminadd label{
+color:white;
+margin-left: 1em;
+margin-right: 5em;
+}
+#aadminadd{
+  background-color:goldenrod;
+}
