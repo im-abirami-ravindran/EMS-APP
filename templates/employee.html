@@ -17,10 +17,10 @@
 <div >
 <section id="section1" >
     <nav id="nav"> 
-    <a href="/">HOME</a>
+    <a href="/employee">HOME</a>
     <a href="{{url_for('eedit')}}">EDIT</a>
-    <a href="#">ATTENDANCE</a> 
-    <a href="#">LEAVE REQUEST</a>     
+    <a href="/">ATTENDANCE</a> 
+    <a href="/employee/leave">LEAVE REQUEST</a>     
     <a href="/logout">LOG OUT</a>  
     </nav>
 </div>
@@ -40,6 +40,8 @@
     </tr>
     {%for i in newuser %}
     <tr>
+        {% set id=i.ename %}
+        
         <td>{{i.eid}}</td>
         <td>{{i.ename}}</td>
         <td>{{i.email}}</td>
@@ -53,7 +55,8 @@
         <td>{{i.LeaveReq}}</td>
     </tr>
 {% endfor %}
+
 </section>
 </table>
-<!--LEAVE REQ,ATTENDANCE REQ ,UPDATE-EDIT(PUT),Validation - username,password,,TEST PY -->
+<!--LEAVE REQ,ATTENDANCE  ,UPDATE-,Validation - username,password,,TEST PY -->
 {% endblock %}

@@ -168,7 +168,7 @@ margin-right: 5em;
 }
 
 #messages{
-  color:red;
+  color:rgb(218, 165, 32);
   font-weight:bold;
 }
 #demo{
@@ -186,6 +186,16 @@ margin-right: 5em;
   display: flex;
 margin-top: -1em;
 
+}
+#btadd{
+  color:white;
+  background-color: #777;
+  border:none;
+  margin-left: 10em;
+  display: flex;
+  padding: 5px 10px;
+  margin-top: -1em;
+ 
 }
 #aadminadd label{
 color:white;

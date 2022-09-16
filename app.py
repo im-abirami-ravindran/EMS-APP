@@ -18,6 +18,7 @@ db = mongo.db.EmployeeDetails
 def index():
     return render_template("index.html")
 
+#SIGN UP FOR EMPLOYEES
 @app.route("/signup",methods=['GET','POST'])
 def signup():
     if request.method == "POST":
@@ -35,6 +36,7 @@ def signup():
 
     return render_template("signup.html")
 
+#LOGIN FOR BOTH EMPLOYEE/ADMIN
 @app.route("/login",methods=['GET','POST'])
 def login():
     if request.method=='POST':
@@ -53,6 +55,7 @@ def login():
             return redirect("/signup")
     return render_template('login.html')
 
+#ADMIN HOME PAGE
 @app.route("/admin",methods=['GET','POST'])
 def admin():
     detail=[]
@@ -61,16 +64,18 @@ def admin():
     # app.add_url_rule("/","/edit")
     return render_template("admin.html",newuser=detail)
 
-
+#EMPLOYEE HOME PAGE
 @app.route("/employee",methods=['GET','POST'])
 def employee():
     detail=[]
     session['username']=username
     if db.find({'ename':username}):
         detail=db.find({'ename':username},{"_id":0})
-        print(detail) 
+        #print(detail) 
     return render_template("employee.html",newuser=detail)
 
+
+#ADMIN ADDING NEW EMPLOYEE
 @app.route("/admin/add",methods=['GET','POST'])
 def aedit():
     db = mongo.db.EmployeeDetails
@@ -80,11 +85,6 @@ def aedit():
         email=request.form['email']
         dob=request.form['dob']
         Dept=request.form['Dept']
-        nod=request.form['nod']
-        FromDate=request.form['FromDate']
-        ToDate=request.form['ToDate']
-        Ain=request.form['Ain']
-        Aout=request.form['Aout']
         LeaveReq=request.form['LeaveReq']
         adder=db.insert_one({
             'eid': eid ,
@@ -92,44 +92,62 @@ def aedit():
             'email':email,
             'DoB': dob,
             'Dept': Dept,
-            'NoDays':nod,
-            'FromDate':FromDate,
-            'ToDate':ToDate,
-            'Ain':Ain,
-            'Aout':Aout,
             'LeaveReq':LeaveReq
         })
+        return redirect("/admin")
     return render_template("add.html")
 
+#EMPLOYEE EDITING HIS EMAIL & DOB
 @app.route("/employee/add",methods=['GET','POST'])
 def eedit():
     session['username']=username
+    d=[]
+    if request.method =='GET':
+        empdata=db.find({'ename':username},{'_id':0})
+        for i in empdata:
+            d.append(i)
+            print(d)
     if request.method == 'POST':
         email=request.form['email']
         dob=request.form['dob']
-        dept=request.form['Dept']
-        nod=request.form['nod']
+        if db.find({'eid':{'$exists':True},'ename':username}):
+            updater=db.update_one({'ename':username},{'$set':{
+            'email': email, 
+            'DoB': dob,
+            }})
+            dbm.update_one({'name':username},{'$set':{'email':email}})
+            return redirect("/employee")
+        else:
+            flash("Wait till Admin gives assigns you a ID")
+    return render_template("eadd.html",newuser=d)
+
+#EMPLOYEE APPLICATION LEAVE
+@app.route("/employee/leave",methods=['GET','POST'])
+def eleave():
+    session['username']=username
+    if request.method== 'POST':
+        #Nod=request.form['nod']
         FromDate=request.form['FromDate']
         ToDate=request.form['ToDate']
-        updater=db.update_one({'ename':username},{'$set':{
-            'email': email,
-            'DoB': dob,
-            'Dept': dept,
-            'NoDays':nod,
+        Nod=request.form['nod']
+        Leave=request.form['LeaveReq']
+        updateleave=db.update_one({'ename':username},{'$set':{
             'FromDate':FromDate,
-            'ToDate':ToDate
+            'ToDate':ToDate,
+            'NoDays': Nod,
+            'LeaveReq':Leave
         }})
-        dbm.update_one({'name':username},{'$set':{'email':email}})
+        return redirect("/employee")
+    return render_template("eleave.html")
         
-    return render_template("eadd.html")
-
-
+#DELETE FROM ADMIN SIDE
 @app.route("/admin/<id>",methods=['GET','POST'])
 def delete(id):
     db.delete_one({'eid':id})
     return redirect(url_for('admin'))
     #return render_template("admin.html")
 
+#LOGOUT OF USERS
 @app.route("/logout",methods=['GET','POST'])
 def logout():
     session["username"]=None

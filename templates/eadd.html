@@ -19,22 +19,20 @@
 <section id="section1" >
     <nav id="nav"> 
     <a href="/employee">HOME</a>
-    <a href="/employee/add">ADD</a>
+    <a href="/employee/add">EDIT</a>
     <a href="/">LEAVE</a>     
     <a href="/signup">LOG OUT</a>  
     </nav>
 </div>
 <div id="aadminadd">
-<form action="/employee/add" method="POST">
-    <label>Email id</label><input type="email" name="email" placeholder="Enter an email" autocomplete="off" /><br>
-    <label>Date of Birth</label><input type="Date" name="dob" placeholder="Enter DOB" autocomplete="off" /><br>
-    <label>Department</label><input type="text" name="Dept" placeholder="Enter Department" autocomplete="off" /><br>
-    <label>No of Days</label><input type="text" name="nod" placeholder=" (Optional) "autocomplete="off" ><br>
-    <label>From Date</label><input type="Date" name="FromDate"  autocomplete="off" ><br><br>
-    <label>To Date</label><input type="Date" name="ToDate"  autocomplete="off"><br><br>
+    {% for d in newuser %}
+<form action="{{url_for('eedit')}}" method="POST">
+    <label>Email id</label><input type="email" name="email" value="{{ d["email"] }}" autocomplete="off" /><br>
+    <label>Date of Birth</label><input type="Date" name="dob" value="{{ d["DoB"] }}" autocomplete="off" /><br>
     <input type="Submit" name="submit" class="addsubmit">
     <input type="reset" name="reset" class="addsubmit">
     <button class="addsubmit" onclick="location.href='http://127.0.0.1:5000/employee'">Back</button>
 </form>
-</section></div>
+{% endfor %}
+</section></div></body>
 {% endblock %}
