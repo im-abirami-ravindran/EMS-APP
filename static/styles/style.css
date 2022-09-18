@@ -135,6 +135,14 @@ a{
   margin-left: 1em;
 }
 
+
+#bta{
+  text-decoration:none;
+  Color: WHITE;
+  background-color:BLACK;
+  text-align:justify;
+  font-size: large;
+}
 #adminadd input[type=text],input[type=email],input[type=date],input[type=datetime-local],textarea {
   width: 20%;
   padding: 5px 10px;  
@@ -171,6 +179,7 @@ margin-right: 5em;
   color:rgb(218, 165, 32);
   font-weight:bold;
 }
+
 #demo{
   color:black;
   background-color: #777;
@@ -190,7 +199,7 @@ margin-top: -1em;
 #btadd{
   color:white;
   background-color: #777;
-  border:none;
+  border:sone;
   margin-left: 10em;
   display: flex;
   padding: 5px 10px;

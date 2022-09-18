@@ -1,0 +1,80 @@
+{% block body %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+<body>
+    <script>
+        function trigger() {
+  var x = document.getElementById("laction").value;
+  //document.write(x)
+document.getElementById("deo").innerHTML = "You selected: " + x;
+}
+    </script>
+<header id="header">
+    <h1>ADMIN SITE</h1>
+    <div id='messages'>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        {{ message }}
+     {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+</header>
+<div >
+    <section id="section1" >
+        <nav id="nav"> 
+        <a href="/admin">HOME</a>
+        <a href="{{url_for('aedit')}}">ADD</a>
+        <a href="/admin/leave">LEAVE</a>     
+        <a href="/logout">LOG OUT</a>  
+        </nav>
+    </div>
+</section>
+<br>
+<table >
+    <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Email id</th>
+        <th>Date of Birth</th>
+        <th>Department</th>
+        <th>No of Days</th>
+        <th>From Date</th>
+        <th>ToDate</th>
+        <th>Attendance IN</th>
+        <th>Attendance OUT</th>
+        <th>Leave Request</th>
+        <th>Action</th>
+    </tr>
+    {%for i in data %}
+    <tr>
+        <td>{{i.eid}}</td>
+        <td>{{i.ename}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.DoB}}</td>
+        <td>{{i.Dept}}</td>
+        <td>{{i.NoDays}}</td>
+        <td>{{i.FromDate}}</td>
+        <td>{{i.ToDate}}</td>
+        <td>{{i.Ain}}</td>
+        <td>{{i.Aout}}</td>
+        <td>{{i.LeaveReq}}  
+        </td>
+        {% set id=i.eid %}
+        <td>
+            <form action="/admin/leave/{{id}}" method="POST">
+                <select class="laction" name="laction" id='laction'>
+                    <option value="">Select One …</option>
+                    <option value="Accept">Accepted</option>
+                    <option value="Decline">Declined</option>
+                </select><br><br>
+                <button type="submit" id="demo">Submit</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+{% endblock %}

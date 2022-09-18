@@ -1,3 +1,4 @@
+from operator import truth
 from flask import Flask,render_template,Response,jsonify,redirect,request,flash,session,url_for
 from flask_pymongo import PyMongo,ObjectId
 from flask_session import Session
@@ -121,6 +122,7 @@ def eedit():
             flash("Wait till Admin gives assigns you a ID")
     return render_template("eadd.html",newuser=d)
 
+
 #EMPLOYEE APPLICATION LEAVE
 @app.route("/employee/leave",methods=['GET','POST'])
 def eleave():
@@ -131,19 +133,43 @@ def eleave():
         ToDate=request.form['ToDate']
         Nod=request.form['nod']
         Leave=request.form['LeaveReq']
+        RoF=request.form['RoF']
         updateleave=db.update_one({'ename':username},{'$set':{
             'FromDate':FromDate,
             'ToDate':ToDate,
             'NoDays': Nod,
-            'LeaveReq':Leave
-        }})
+            'LeaveReq':Leave,
+            'RoF':RoF
+        }},True)
         return redirect("/employee")
     return render_template("eleave.html")
         
+
+# EMPLOYEE ATTENDANCE
+
+# ADMIN LEAVE REQUESTS PAGE
+@app.route("/admin/leave",methods=['GET','POST'])
+def lq():
+    ltreq=[]
+    for i in db.find({'LeaveReq': 'Requested'},{"_id":0}):
+        ltreq.append(i)
+    return render_template('AdminLeaveReq.html',data=ltreq) 
+
+
+#ADMIN LEAVE REQUEST ACCPETING/DECLINING EMPLOYEE
+@app.route("/admin/leave/<id>",methods=['GET','POST'])
+def lsq(id):
+    if request.method=='POST':
+        lv=request.form['laction']
+        updatereq=db.update_one({'eid':id},{'$set':{'LeaveReq':lv}})
+    return redirect(url_for('admin'))
+
+
 #DELETE FROM ADMIN SIDE
 @app.route("/admin/<id>",methods=['GET','POST'])
 def delete(id):
     db.delete_one({'eid':id})
+    dbm.delete_one({'eid':id})
     return redirect(url_for('admin'))
     #return render_template("admin.html")
 

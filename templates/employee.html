@@ -2,6 +2,22 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
 </head>
+<body>
+    <script>
+   //var formattedToday ;
+function ad() {
+const d = new Date();
+const today = new Date();
+var formattedToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '   ' + today.getHours()+ ':' +today.getMinutes() + ':' + today.getSeconds(); 
+//alert(formattedToday)
+document.getElementById("myTime").innerHTML=formattedToday
+return formattedToday
+//document.write(formattedToday )
+//return  formattedToday;
+//document.getElementById("myTime").innerHTML =formattedToday
+// var dammit=formattedToday
+} 
+    </script>
 <header id="header">
     <h1>EMPLOYEE SITE</h1>
     <div id='messages'>
@@ -19,9 +35,9 @@
     <nav id="nav"> 
     <a href="/employee">HOME</a>
     <a href="{{url_for('eedit')}}">EDIT</a>
-    <a href="/">ATTENDANCE</a> 
+    <button id="bta" onclick="ad()">ATTENDANCE</button>
     <a href="/employee/leave">LEAVE REQUEST</a>     
-    <a href="/logout">LOG OUT</a>  
+    <a href="/logout">LOG OUT</a> 
     </nav>
 </div>
 <table >
@@ -34,6 +50,7 @@
         <th>No of Days</th>
         <th>From Date</th>
         <th>ToDate</th>
+        <th>Reason Of Leave</th>
         <th>Attendance IN</th>
         <th>Attendance OUT</th>
         <th>Leave Request</th>
@@ -50,13 +67,15 @@
         <td>{{i.NoDays}}</td>
         <td>{{i.FromDate}}</td>
         <td>{{i.ToDate}}</td>
-        <td>{{i.Ain}}</td>
-        <td>{{i.Aout}}</td>
+        <td>{{i.RoF}}</td>
+        <td id="myTime">{{i.Ain}}</td>
+        <td id="myTime">{{i.Aout}}</td>
         <td>{{i.LeaveReq}}</td>
     </tr>
 {% endfor %}
 
 </section>
 </table>
+</body>
 <!--LEAVE REQ,ATTENDANCE  ,UPDATE-,Validation - username,password,,TEST PY -->
 {% endblock %}

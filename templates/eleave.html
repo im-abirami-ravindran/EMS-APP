@@ -35,18 +35,19 @@
     <nav id="nav"> 
     <a href="/employee">HOME</a>
     <a href="/employee/add">EDIT</a>
-    <a href="/employee/leave">LEAVE</a>     
-    <a href="/signup">LOG OUT</a>  
+    <a href="/employee/leave">LEAVE REQUEST</a>     
+    <a href="/logout">LOG OUT</a>  
     </nav>
 </div>
 
 <div id="aadminadd">
     <form method="POST" name="form_main">
-        <label>From Date</label><input type="Date" id="fdate" name="FromDate"  autocomplete="off" ><br><br>
-        <label>To Date</label><input type="Date" id="tdate"name="ToDate"  autocomplete="off"><br><br>
+        <label>From Date</label><input type="Date" id="fdate" name="FromDate"  autocomplete="off" required ><br><br>
+        <label>To Date</label><input type="Date" id="tdate"name="ToDate"  autocomplete="off" required><br><br>
         <button type="button" id="btadd" onclick="countDays();return confirm('Do you want to confirm the dates')">Confirm Date</button> <br>
         <label>No of Days</label><input type="text" id="nod" name='nod' autocomplete="off" /><br>
         <label>Leave Request</label><input type="text" name="LeaveReq" value="Requested" readonly /><br>
+        <label>Reason for Leave</label><input type="text" name="RoF" placeholder="Please enter your reason" required/>
                 <input type="Submit" name="submit" class="addsubmit">
         <input type="reset" name="reset" class="addsubmit">
         <button class="addsubmit" onclick="location.href='http://127.0.0.1:5000/employee'">Back</button>
