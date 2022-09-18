@@ -156,7 +156,7 @@ def lq():
     return render_template('AdminLeaveReq.html',data=ltreq) 
 
 
-#ADMIN LEAVE REQUEST ACCPETING/DECLINING EMPLOYEE
+#ADMIN LEAVE REQUEST ACCPETING/DECLININ EMPLOYEE
 @app.route("/admin/leave/<id>",methods=['GET','POST'])
 def lsq(id):
     if request.method=='POST':
