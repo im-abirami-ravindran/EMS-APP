@@ -2,8 +2,25 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static',filename='styles/style.css') }}" />
 </head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
 <body class="addbg">
 <script>
+     $(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var maxDate = year + '-' + month + '-' + day;
+    // alert(maxDate);
+    $('#fdate').attr('min', maxDate);
+    $('#tdate').attr('min', maxDate);
+});
     const second = 1000;
     const minute = second * 60;
     const hour = minute * 60;
@@ -17,6 +34,7 @@
         //document.write(Math.floor(diff / day))
         document.getElementById('nod').value = count;
 }
+
 </script>
 <header id="header">
     <h1>EMPLOYEE SITE</h1>
@@ -42,12 +60,12 @@
 
 <div id="aadminadd">
     <form method="POST" name="form_main">
-        <label>From Date</label><input type="Date" id="fdate" name="FromDate"  autocomplete="off" required ><br><br>
+        <label>From Date</label><input type="Date" id="fdate" name="FromDate"  autocomplete="off" required  min="2020-01-01" /><br><br>
         <label>To Date</label><input type="Date" id="tdate"name="ToDate"  autocomplete="off" required><br><br>
         <button type="button" id="btadd" onclick="countDays();return confirm('Do you want to confirm the dates')">Confirm Date</button> <br>
         <label>No of Days</label><input type="text" id="nod" name='nod' autocomplete="off" /><br>
         <label>Leave Request</label><input type="text" name="LeaveReq" value="Requested" readonly /><br>
-        <label>Reason for Leave</label><input type="text" name="RoF" placeholder="Please enter your reason" required/>
+        <label>Reason for Leave</label><input type="text" name="RoF" placeholder="Please enter your reason" required autocomplete="off"/>
                 <input type="Submit" name="submit" class="addsubmit">
         <input type="reset" name="reset" class="addsubmit">
         <button class="addsubmit" onclick="location.href='http://127.0.0.1:5000/employee'">Back</button>

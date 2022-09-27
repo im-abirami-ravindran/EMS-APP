@@ -6,14 +6,35 @@
 </head>
 <div class="login-block" id="divlogin">
 <center>  <h1> Login </h1> </center>
+<div id='messages'>
+    <center>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        {{ message }}
+     {% endfor %}
+    {% endif %}
+    {% endwith %}
+</center>
+</div>
  <hr>
 <body id="flogin">
+    <script>
+    function myFunction() {
+    var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+    </script>
 <form method="POST" class="'form1" >
     <label class="l1"> Username </label>
     <input type="text"name="name" placeholder="Enter Username" size="15" autocomplete="off" required /><br>
     <label class="l1"> Password </label>
-    <input type="password" name="password" placeholder="Enter Password"size="15" autocomplete="off" required /><br>
-
+    <input type="password" name="password" placeholder="Enter Password"size="15" autocomplete="off" id="myInput" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title="Enter a passowrd with atleast {8} characters with 1 UPPERCASE,1 LOWERCASE,1 SYMBOL,1 NUMBER" required /><br>
+    <input type="checkbox" onclick="myFunction()">Show Password<br>
     <input type="submit" value="Submit" class="submit">
     <input type="button" value="Back" class='submit' onclick="location.href='http://127.0.0.1:5000/'"><br>
 <center>Create Account<a href="http://127.0.0.1:5000/signup"> SignUp</a></center>

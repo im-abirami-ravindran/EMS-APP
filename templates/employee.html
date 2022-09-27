@@ -9,14 +9,22 @@ function ad() {
 const d = new Date();
 const today = new Date();
 var formattedToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '   ' + today.getHours()+ ':' +today.getMinutes() + ':' + today.getSeconds(); 
-//alert(formattedToday)
-document.getElementById("myTime").innerHTML=formattedToday
+document.getElementById("Ain").innerHTML=formattedToday
+const button = document.querySelector('button');
+//alert('The Ain time is:'+formattedToday)
 return formattedToday
-//document.write(formattedToday )
-//return  formattedToday;
-//document.getElementById("myTime").innerHTML =formattedToday
-// var dammit=formattedToday
+button.disabled=true
 } 
+
+function adc() {
+const d = new Date();
+const today = new Date();
+var formattedToday = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '   ' + today.getHours()+ ':' +today.getMinutes() + ':' + today.getSeconds(); 
+//alert('The AOUT time is:'+formattedToday)
+document.getElementById("Aout").innerHTML=formattedToday
+return formattedToday
+
+}
     </script>
 <header id="header">
     <h1>EMPLOYEE SITE</h1>
@@ -35,7 +43,6 @@ return formattedToday
     <nav id="nav"> 
     <a href="/employee">HOME</a>
     <a href="{{url_for('eedit')}}">EDIT</a>
-    <button id="bta" onclick="ad()">ATTENDANCE</button>
     <a href="/employee/leave">LEAVE REQUEST</a>     
     <a href="/logout">LOG OUT</a> 
     </nav>
@@ -57,8 +64,6 @@ return formattedToday
     </tr>
     {%for i in newuser %}
     <tr>
-        {% set id=i.ename %}
-        
         <td>{{i.eid}}</td>
         <td>{{i.ename}}</td>
         <td>{{i.email}}</td>
@@ -68,14 +73,21 @@ return formattedToday
         <td>{{i.FromDate}}</td>
         <td>{{i.ToDate}}</td>
         <td>{{i.RoF}}</td>
-        <td id="myTime">{{i.Ain}}</td>
-        <td id="myTime">{{i.Aout}}</td>
+        <td>{{i.Ain}}</td>
+        <td>{{i.Aout}}</td>
         <td>{{i.LeaveReq}}</td>
-    </tr>
+</tr>
 {% endfor %}
-
 </section>
 </table>
+
+<div id="qwert">
+    <br>
+    <form action="/isubmit">
+    <button type="submit" name='ain' id="Ain" onclick="ad();"  >Register your In time</button></form>
+    <form action="/osubmit">
+        <button name='aout' id="Aout"onclick="adc()">Register your Out time</button></form>
+</div>
 </body>
 <!--LEAVE REQ,ATTENDANCE  ,UPDATE-,Validation - username,password,,TEST PY -->
 {% endblock %}

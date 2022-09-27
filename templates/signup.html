@@ -8,14 +8,28 @@
     <center>  <h1> Sign Up </h1> </center>
     <hr>
 <body class="signupbg">
+    <script>
+        function myFunction() {
+    var x = document.getElementById("myInput");
+    var y = document.getElementById("mynewInput");
+  if (x.type === "password" && y.type ==='password') {
+    x.type = "text"
+    y.type= "text";
+  } else {
+    x.type = "password";
+    y.type = "password"
+  }
+}
+    </script>
 <form  method='POST' id="signup">
     Username: <input type="text" name="name" placeholder="Enter Username" size="15" autocomplete="off" required /><br>
-    Email: <input type="text" name="email" placeholder="Enter Email"  size="15" autocomplete="off" required /><br>
-    Password: <input type="password" name="password" placeholder="Enter Password"  size="15" autocomplete="off" required /><br>
-    Re-enter Password: <input type="password" name="password" placeholder="Re-Enter Password"  size="15" autocomplete="off" required /><br>
+    Email: <input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Enter a valid email id" placeholder="Enter Email"  size="15" autocomplete="off" required /><br>
+    Password: <input type="password" name="password" id="myInput" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title="Enter a passowrd with atleast {8} characters with 1 UPPERCASE,1 LOWERCASE,1 SYMBOL,1 NUMBER" placeholder="Enter Password"  size="15" autocomplete="off" required /><br>
+    Re-enter Password: <input type="password" name="password" id="mynewInput" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"  title="Enter a passowrd with atleast {8} characters with 1 UPPERCASE,1 LOWERCASE,1 SYMBOL,1 NUMBER" placeholder="Re-Enter Password"  size="15" autocomplete="off" required /><br>
+    <input type="checkbox" onclick="myFunction()">Show Password<br>
     <input type="submit" value="Submit" class="ssubmit">
     <input type="reset" value="Reset" class="ssubmit">
-    <input type="button" value="Back" class="ssubmit" onclick="location.href='http://127.0.0.1:5000/'">
+    <input type="button" value="Back" class="ssubmit" onclick="location.href='http://127.0.0.1:5000'">
 </form>
 </body>
 </div>

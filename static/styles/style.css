@@ -176,7 +176,7 @@ margin-right: 5em;
 }
 
 #messages{
-  color:rgb(218, 165, 32);
+  color:rgb(245, 245, 243);
   font-weight:bold;
 }
 
@@ -213,4 +213,13 @@ margin-right: 5em;
 }
 #aadminadd{
   background-color:goldenrod;
+}
+
+#qwert{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+ 
+
 }

@@ -43,12 +43,14 @@ document.getElementById("deo").innerHTML = "You selected: " + x;
         <th>No of Days</th>
         <th>From Date</th>
         <th>ToDate</th>
+        <th>Reason Of Leave</th>
         <th>Attendance IN</th>
         <th>Attendance OUT</th>
         <th>Leave Request</th>
         <th>Action</th>
     </tr>
-    {%for i in data %}
+    {% for i in data %}
+        
     <tr>
         <td>{{i.eid}}</td>
         <td>{{i.ename}}</td>
@@ -58,6 +60,7 @@ document.getElementById("deo").innerHTML = "You selected: " + x;
         <td>{{i.NoDays}}</td>
         <td>{{i.FromDate}}</td>
         <td>{{i.ToDate}}</td>
+        <td>{{i.RoF}}</td>
         <td>{{i.Ain}}</td>
         <td>{{i.Aout}}</td>
         <td>{{i.LeaveReq}}  
@@ -67,8 +70,8 @@ document.getElementById("deo").innerHTML = "You selected: " + x;
             <form action="/admin/leave/{{id}}" method="POST">
                 <select class="laction" name="laction" id='laction'>
                     <option value="">Select One …</option>
-                    <option value="Accept">Accepted</option>
-                    <option value="Decline">Declined</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Declined">Declined</option>
                 </select><br><br>
                 <button type="submit" id="demo">Submit</button>
             </form>
